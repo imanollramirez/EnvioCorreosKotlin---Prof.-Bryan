@@ -22,26 +22,24 @@ suspend fun enviarCorreo(receptor: String, sujeto: String, mensaje: String) = wi
         put("mail.smtp.port", "465")
     }
 
-    // Iniciamos Sesión
+    // Iniciar Sesión
     val session = Session.getInstance(props, object : javax.mail.Authenticator() {
         override fun getPasswordAuthentication(): PasswordAuthentication {
-            return PasswordAuthentication("exequiel.miranda314@gmail.com", "novoyapasarlesmicontraseña")
+            return PasswordAuthentication("20230065@ricaldone.edu.sv", "xxva wagw uhpg qnlr")
         }
     })
 
-    // Hacemos el envío
+    // Enviar correo
     try {
         val message = MimeMessage(session).apply {
-            //Con que correo enviaré el mensaje
-            setFrom(InternetAddress("exequiel.miranda314@gmail.com"))
+            setFrom(InternetAddress("20230065@ricaldone.edu.sv"))
             addRecipient(Message.RecipientType.TO, InternetAddress(receptor))
             subject = sujeto
             setText(mensaje)
         }
         Transport.send(message)
-        println("Correo enviado satisfactoriamente")
     } catch (e: MessagingException) {
         e.printStackTrace()
-        println("CORREO NO ENVIADO")
+        println("Error al enviar código")
     }
 }
